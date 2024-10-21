@@ -20,7 +20,15 @@ const currentVelocity = calcNewVel(velocity, acceleration, time);   //calculates
 
 // Pick up an error with how the function below is called and make it robust to such errors
 function calcNewVel(velocity, acceleration, time){ 
-  return velocity + (acceleration * time);
+  
+  // Assume "velocity" is always given in km/h -> convert to m/s
+  const baseVelocity = velocity / 3.6;
+
+  // Calculate result in base units
+  const baseResult = baseVelocity + (acceleration * time);
+
+  // Return result in scaled units of km/h
+  return baseResult * 3.6;
 };
 
 console.log(`Corrected New Velocity: ${currentVelocity} km/h`);
