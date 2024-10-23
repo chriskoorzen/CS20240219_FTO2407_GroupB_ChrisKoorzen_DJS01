@@ -18,11 +18,19 @@ const currentDistance = distance + (velocity*(time/3600));          //calcultes 
 const currentFuel = startingFuel - (fuelBurnRate*time);             //calculates remaining fuel
 const currentVelocity = calcNewVel(velocity, acceleration, time);   //calculates new velocity based on acceleration
 
-// Pick up an error with how the function below is called and make it robust to such errors
-function calcNewVel(velocity, acceleration, time){ 
+
+/**
+ * Calculate an object's end velocity based on acceleration over time and starting velocity
+ *
+ * @param {number} startVelocity expressed in "km/h"
+ * @param {number} acceleration expressed in "m/s^2"
+ * @param {number} time expressed in "seconds"
+ * @returns {number} endVelocity expressed in "km/h"
+ */
+function calcNewVel(startVelocity, acceleration, time){ 
   
   // Assume "velocity" is always given in km/h -> convert to m/s
-  const baseVelocity = velocity / 3.6;
+  const baseVelocity = startVelocity / 3.6;
 
   // Calculate result in base units
   const baseResult = baseVelocity + (acceleration * time);
